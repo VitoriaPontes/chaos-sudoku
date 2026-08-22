@@ -1,4 +1,4 @@
-# Chao Sudoku
+# Chaos Sudoku
 
 Formalização do Chaos Sudoku em Lógica Proposicional, utilizando um SAT solver moderno.
 
