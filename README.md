@@ -118,17 +118,16 @@ O campo `pistas` é opcional. Caso ele seja omitido, todas as células são cons
 
 A variável proposicional
 
-$$
+```math
 x_{i,j,v}
-$$
+```
 
 é verdadeira se, e somente se, a célula localizada na linha $i$ e coluna $j$ contém o valor $v$.
 
 Para utilização no formato DIMACS, cada variável é convertida para um inteiro positivo por:
 
-$$
 ```math
-\operatorname{var}(i,j,v)
+\mathrm{var}(i,j,v)
 =
 N^2(i-1)+N(j-1)+v.
 ```
