@@ -6,7 +6,7 @@ O objetivo é formalizar instâncias de **Chaos Sudoku** em Lógica Proposiciona
 
 ## Chaos Sudoku
 
-No Chaos Sudoku, uma grade de tamanho \(N \times N\) deve ser preenchida com valores de \(1\) a \(N\).
+No Chaos Sudoku, uma grade de tamanho $N \times N$ deve ser preenchida com valores de $1$ a $N$.
 
 Cada valor deve aparecer uma única vez:
 
@@ -69,9 +69,9 @@ As instâncias são armazenadas em arquivos JSON contendo duas matrizes:
 
 A matriz `regioes` informa a qual região pertence cada célula.
 
-Para uma instância de tamanho \(N\):
+Para uma instância de tamanho $N$:
 
-- a matriz deve possuir tamanho \(N \times N\);
+- a matriz deve possuir tamanho $N \times N$;
 - os identificadores das regiões devem ser os inteiros de `1` a `N`;
 - devem existir exatamente `N` regiões;
 - cada região deve possuir exatamente `N` células.
@@ -118,25 +118,25 @@ O campo `pistas` é opcional. Caso ele seja omitido, todas as células são cons
 
 A variável proposicional
 
-\[
+$$
 x_{i,j,v}
-\]
+$$
 
-é verdadeira se, e somente se, a célula localizada na linha \(i\) e coluna \(j\) contém o valor \(v\).
+é verdadeira se, e somente se, a célula localizada na linha $i$ e coluna $j$ contém o valor $v$.
 
 Para utilização no formato DIMACS, cada variável é convertida para um inteiro positivo por:
 
-\[
+$$
 \operatorname{var}(i,j,v)
 =
 N^2(i-1)+N(j-1)+v.
-\]
+$$
 
 Dessa forma, são utilizadas:
 
-\[
+$$
 N^3
-\]
+$$
 
 variáveis proposicionais.
 
@@ -202,29 +202,29 @@ p cnf 64 404
 
 ## Contagem das cláusulas
 
-Para uma instância válida com `G` pistas, a formalização utilizada produz:
+Para uma instância válida com $G$ pistas, a formalização utilizada produz:
 
-\[
+$$
 N^2
 +
 4N^2\binom{N}{2}
 +
 G
-\]
+$$
 
 cláusulas.
 
-Para `N = 4`, sem pistas:
+Para $N = 4$, sem pistas:
 
-\[
+$$
 16 + 4 \cdot 16 \cdot 6 = 400.
-\]
+$$
 
 Com quatro pistas:
 
-\[
+$$
 400 + 4 = 404.
-\]
+$$
 
 O gerador verifica automaticamente se o número de cláusulas efetivamente produzido coincide com a quantidade prevista pela formalização.
 
@@ -233,7 +233,7 @@ O gerador verifica automaticamente se o número de cláusulas efetivamente produ
 Antes de gerar a fórmula, o programa verifica:
 
 - se `N` é positivo;
-- se as matrizes possuem dimensão `N x N`;
+- se as matrizes possuem dimensão $N \times N$;
 - se existem exatamente `N` regiões;
 - se cada região possui exatamente `N` células;
 - se os identificadores das regiões estão entre `1` e `N`;
@@ -303,6 +303,36 @@ UNSATISFIABLE
 Quando a instância é satisfatível, o modelo retornado pelo solver contém os valores verdadeiros e falsos das variáveis proposicionais.
 
 A reconstrução da grade a partir desse modelo faz parte da etapa de experimentação do projeto.
+
+## Exemplos de satisfatibilidade
+
+O repositório inclui duas instâncias 4 × 4 para verificação inicial.
+
+A instância:
+
+```text
+instances/exemplo_4.json
+```
+
+é satisfatível e deve resultar em:
+
+```text
+s SATISFIABLE
+```
+
+Já:
+
+```text
+instances/exemplo_4_unsat.json
+```
+
+possui duas pistas que obrigam o valor `1` a aparecer duas vezes na mesma linha e, portanto, deve resultar em:
+
+```text
+s UNSATISFIABLE
+```
+
+Essas instâncias permitem verificar a integração entre o gerador DIMACS e um SAT solver real antes da etapa completa de experimentação.
 
 ## Arquivos gerados
 
