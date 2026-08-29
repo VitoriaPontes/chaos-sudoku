@@ -127,10 +127,11 @@ $$
 Para utilização no formato DIMACS, cada variável é convertida para um inteiro positivo por:
 
 $$
+```math
 \operatorname{var}(i,j,v)
 =
 N^2(i-1)+N(j-1)+v.
-$$
+```
 
 Dessa forma, são utilizadas:
 
