@@ -1,0 +1,19 @@
+# Arquivos compilados/cache do Python
+__pycache__/
+*.py[cod]
+
+# Ambientes virtuais Python
+.venv/
+venv/
+env/
+
+# Arquivos gerados pelo gerador DIMACS
+*.cnf
+
+# Arquivos de ferramentas e editores
+.vscode/
+.idea/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
