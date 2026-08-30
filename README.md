@@ -26,7 +26,8 @@ chaos-sudoku/
 │   ├── exemplo_4.json
 │   └── exemplo_4_unsat.json
 ├── scripts/
-│   └── rodar_experimentos.sh
+│   ├── rodar_experimentos.sh
+│   └── verificar_solucoes.py
 ├── src/
 │   └── gerador.py
 ├── tests/
@@ -339,6 +340,25 @@ chmod +x scripts/rodar_experimentos.sh
 
 A saída é no formato CSV (separado por `;`), o que facilita colar os
 resultados em uma planilha ou conferir os números usados no relatório.
+
+## Verificando a validade das soluções
+
+O script `scripts/verificar_solucoes.py` roda o CaDiCaL em cada uma das
+sete instâncias e, quando o resultado é SAT, decodifica a grade a partir
+do modelo devolvido pelo solver. Em seguida, confere de forma
+independente — sem confiar no solver — se essa grade respeita as regras
+do Chaos Sudoku: unicidade por linha, por coluna, por região e
+compatibilidade com as pistas fornecidas.
+
+Para executá-lo, a partir da raiz do repositório:
+
+```bash
+python3 scripts/verificar_solucoes.py
+```
+
+Ao final, o script imprime `RESULTADO FINAL: todas as grades SAT sao
+validas.` se nenhuma inconsistência for encontrada, ou a lista exata de
+regras violadas em cada instância problemática.
 
 ## Exemplos de satisfatibilidade
 
