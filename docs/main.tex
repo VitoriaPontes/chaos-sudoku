@@ -238,17 +238,17 @@ A etapa experimental utiliza o CaDiCaL, conforme recomendado no enunciado da dis
 \begin{table}[H]
 \centering
 \caption{Resultados experimentais com CaDiCaL.}
-\begin{tabular}{c r r r l r}
+\begin{tabular}{c r r r l r r}
 \toprule
-Instância & N & Variáveis & Cláusulas & Pistas & Resultado \\
+Instância & N & Variáveis & Cláusulas & Pistas & Resultado & Tempo (s) \\
 \midrule
-exemplo\_4 & 4 & 64 & 404 & 4 & SAT \\
-exemplo\_4\_unsat & 4 & 64 & 402 & 2 & UNSAT \\
-exemplo\_5 & 5 & 125 & 1027 & 2 & UNSAT \\
-exemplo\_6 & 6 & 216 & 2202 & 6 & SAT \\
-exemplo\_7 & 7 & 343 & 4167 & 2 & UNSAT \\
-exemplo\_8 & 8 & 512 & 7240 & 8 & SAT \\
-exemplo\_9 & 9 & 729 & 11754 & 9 & SAT \\
+exemplo\_4 & 4 & 64 & 404 & 4 & SAT & 0,013 \\
+exemplo\_4\_unsat & 4 & 64 & 402 & 2 & UNSAT & 0,001 \\
+exemplo\_5 & 5 & 125 & 1027 & 2 & UNSAT & 0,002 \\
+exemplo\_6 & 6 & 216 & 2202 & 6 & SAT & 0,003 \\
+exemplo\_7 & 7 & 343 & 4167 & 2 & UNSAT & 0,002 \\
+exemplo\_8 & 8 & 512 & 7240 & 8 & SAT & 0,003 \\
+exemplo\_9 & 9 & 729 & 11754 & 9 & SAT & 0,003 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -302,7 +302,7 @@ A instância \(8\times8\) possui 512 variáveis e 7.240 cláusulas, com oito pis
 7 & 6 & 3 & 2 & 8 & 4 & 1 & 5 \\
 5 & 8 & 1 & 4 & 2 & 7 & 3 & 6 \\
 6 & 7 & 8 & 3 & 5 & 1 & 2 & 4 \\
-4 & 5 & 1 & 3 & 6 & 8 & 7 & 2 \\
+2 & 4 & 5 & 1 & 3 & 6 & 8 & 7 \\
 4 & 5 & 6 & 8 & 1 & 2 & 7 & 3 \\
 3 & 1 & 2 & 7 & 4 & 5 & 6 & 8
 \end{array}
@@ -333,7 +333,7 @@ Essa etapa é importante porque demonstra que o solver não apenas classifica a 
 
 \subsection{Observação sobre os tempos}
 
-Os tempos registrados como \(0{,}00\,\text{s}\) devem ser interpretados como o valor exibido pelo mecanismo de medição utilizado nas execuções. Eles não significam necessariamente que não houve custo computacional, mas que a duração ficou abaixo da resolução apresentada. Como as instâncias são pequenas, esse comportamento é compatível com a rapidez esperada de um SAT solver moderno nesses casos.
+Os tempos medidos ficaram entre 1 e 13 milissegundos, sem relação direta com o tamanho da instância: a maior demora observada ocorreu na instância \(4\times4\) (0,013 s), enquanto instâncias maiores, como a \(9\times9\), foram resolvidas em 3 milissegundos. Esse comportamento é esperado para fórmulas desse porte, pequenas o suficiente para que fatores como o tempo de inicialização do solver dominem sobre a dificuldade real de busca. Diferenças de desempenho mais claras entre as instâncias provavelmente só apareceriam em grades bem maiores que \(N=9\).
 
 \section{Análise dos resultados}
 
