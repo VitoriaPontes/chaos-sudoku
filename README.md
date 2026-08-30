@@ -25,6 +25,8 @@ chaos-sudoku/
 ├── instances/
 │   ├── exemplo_4.json
 │   └── exemplo_4_unsat.json
+├── scripts/
+│   └── rodar_experimentos.sh
 ├── src/
 │   └── gerador.py
 ├── tests/
@@ -303,6 +305,40 @@ UNSATISFIABLE
 Quando a instância é satisfatível, o modelo retornado pelo solver contém os valores verdadeiros e falsos das variáveis proposicionais.
 
 A reconstrução da grade a partir desse modelo faz parte da etapa de experimentação do projeto.
+
+## Instalando o CaDiCaL
+
+O CaDiCaL não é distribuído via `pip` ou `apt`. Para instalá-lo:
+
+```bash
+git clone https://github.com/arminbiere/cadical.git
+cd cadical
+./configure && make
+```
+
+O binário compilado fica em `build/cadical`. Para poder chamá-lo apenas como
+`cadical` de qualquer lugar do terminal, adicione o diretório `build` ao
+`PATH`, por exemplo adicionando ao final do `~/.bashrc`:
+
+```bash
+export PATH="$PATH:/caminho/para/cadical/build"
+```
+
+## Reproduzindo todos os experimentos de uma vez
+
+O script `scripts/rodar_experimentos.sh` gera as sete instâncias CNF, executa
+o CaDiCaL em cada uma delas e imprime uma tabela com número de variáveis,
+número de cláusulas, resultado (SAT/UNSAT) e tempo de execução em segundos.
+
+Para executá-lo, a partir da raiz do repositório:
+
+```bash
+chmod +x scripts/rodar_experimentos.sh
+./scripts/rodar_experimentos.sh
+```
+
+A saída é no formato CSV (separado por `;`), o que facilita colar os
+resultados em uma planilha ou conferir os números usados no relatório.
 
 ## Exemplos de satisfatibilidade
 
